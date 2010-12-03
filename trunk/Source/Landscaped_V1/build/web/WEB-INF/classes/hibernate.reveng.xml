@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+    <schema-selection match-catalog="Landscaped"/>
+    <table-filter match-name="Roles"/>
+    <table-filter match-name="Account"/>
+    <table-filter match-name="Advertisement"/>
+    <table-filter match-name="Articles"/>
+    <table-filter match-name="ArticlesCategories"/>
+    <table-filter match-name="Categories"/>
+    <table-filter match-name="FeedBack"/>
+    <table-filter match-name="OrderDetails"/>
+    <table-filter match-name="Orders"/>
+    <table-filter match-name="PictureProducts"/>
+    <table-filter match-name="Products"/>
+</hibernate-reverse-engineering>

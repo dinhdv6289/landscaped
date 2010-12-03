@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="Landscaped" name="Landscaped.Domain.Product" table="Products">
+        <id name="productId" type="int">
+            <column name="ProductId"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="Landscaped.Domain.Categories" fetch="select" name="category">
+            <column name="categoryId"/>
+        </many-to-one>
+        <many-to-one class="Landscaped.Domain.Account" fetch="select" name="account">
+            <column name="accountId"/>
+        </many-to-one>
+        <property name="productName" type="string">
+            <column length="50" name="ProductName"/>
+        </property>
+        <property name="price" type="float">
+            <column name="Price"/>
+        </property>
+        <property name="description" type="string">
+            <column name="Description"/>
+        </property>
+        <property name="dateCreation" type="timestamp">
+            <column name="DateCreation"/>
+        </property>
+        <property name="dateModify" type="timestamp">
+            <column name="DateModify"/>
+        </property>
+        <property name="state" type="boolean">
+            <column name="State"/>
+        </property>
+        <set inverse="true" name="pictureProducts">
+            <key>
+                <column name="ProductId"/>
+            </key>
+            <one-to-many class="Landscaped.Domain.PictureProducts"/>
+        </set>
+    </class>
+</hibernate-mapping>

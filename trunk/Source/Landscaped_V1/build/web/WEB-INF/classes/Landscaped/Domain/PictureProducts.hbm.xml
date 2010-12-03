@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="Landscaped" name="Landscaped.Domain.PictureProducts" table="PictureProducts">
+        <id name="pictureId" type="int">
+            <column name="PictureId"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="Landscaped.Domain.Product" fetch="select" name="product">
+            <column name="productId"/>
+        </many-to-one>
+        <property name="pathImage" type="string">
+            <column length="100" name="PathImage"/>
+        </property>
+        <property name="primaryImage" type="boolean">
+            <column name="PrimaryImage"/>
+        </property>
+    </class>
+</hibernate-mapping>
