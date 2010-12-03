@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="Landscaped" name="Landscaped.Domain.Account" table="Account">
+        <id name="accountId" type="int">
+            <column name="AccountId"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="Landscaped.Domain.Roles" fetch="select" name="roles">
+            <column name="roleId"/>
+        </many-to-one>
+        <property name="username" type="string">
+            <column length="30" name="UserName"/>
+        </property>
+        <property name="password" type="string">
+            <column length="32" name="Password"/>
+        </property>
+        <property name="picture" type="string">
+            <column length="100" name="Picture"/>
+        </property>
+        <property name="compartment" type="string">
+            <column length="50" name="Compartment"/>
+        </property>
+        <property name="fullName" type="string">
+            <column length="100" name="FullName"/>
+        </property>
+        <property name="homePhone" type="string">
+            <column length="10" name="HomePhone"/>
+        </property>
+        <property name="mobilePhone" type="string">
+            <column length="15" name="MobilePhone"/>
+        </property>
+        <property name="email" type="string">
+            <column length="50" name="Email"/>
+        </property>
+        <property name="address" type="string">
+            <column length="250" name="Address"/>
+        </property>
+        <property name="state" type="boolean">
+            <column name="State"/>
+        </property>
+    </class>
+</hibernate-mapping>
