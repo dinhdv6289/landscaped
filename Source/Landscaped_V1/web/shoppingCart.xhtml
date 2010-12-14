@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <ui:composition template="./template/userTemplate.xhtml">
+        <ui:define name="content">
+            <div class="wrap-content">
+                <div class="content-bg-title">
+                    <div class="content-title">Giỏ hàng của bạn</div>
+                </div>
+                <div class="content-data">
+                    <h:form prependId="false">
+                        <p:messages id="msgs"/>  
+                        <p:dataTable id="availableCars" var="car" value="#{shoppingCartBean.items}">
+                            <p:column headerText="STT" style="width:24px">
+                                <h:outputText value="1" />
+                            </p:column>
+
+                            <p:column headerText="Tên sản phẩm">
+                                <h:commandLink value="#{car.productName}" action="#{productBean.viewDetail}">
+                                    <f:setPropertyActionListener target="#{productBean.current}" value="#{car}"></f:setPropertyActionListener>
+                                </h:commandLink>
+                            </p:column>
+
+                            <p:column headerText="Giá (VND)">
+                                <h:outputText style="color: red;" value="#{car.price}">
+                                    <f:convertNumber type="number"></f:convertNumber>
+                                </h:outputText>
+                            </p:column>
+
+                            <p:column headerText="Số lượng">
+                                <h:inputText id="txtAmuont" required="true" style="width: 50px;"  value="${car.amount}">
+                                    <f:validateLongRange minimum="1" maximum="50"></f:validateLongRange>
+                                </h:inputText>
+                            </p:column>
+
+                            <p:column headerText="Tổng giá (VND)">
+                                <h:outputText style="color: red;" value="#{car.subPrice}" >
+                                    <f:convertNumber type="number"></f:convertNumber>
+                                </h:outputText>
+                            </p:column>
+
+                            <p:column headerText="Action">
+                                <p:commandLink ajax="false" update="mgs" action="#{shoppingCartBean.updateCart}">
+                                    <f:setPropertyActionListener target="#{shoppingCartBean.productId}" value="#{car.productId}"></f:setPropertyActionListener>
+                                    <f:setPropertyActionListener target="#{shoppingCartBean.amount}" value="#{car.amount}"></f:setPropertyActionListener>
+                                    <div class="button-update-cart"></div>
+                                </p:commandLink>
+                                <p:commandLink ajax="false" action="#{shoppingCartBean.removeCart}">
+                                    <f:setPropertyActionListener target="#{shoppingCartBean.productId}" value="#{car.productId}"></f:setPropertyActionListener>
+                                    <div class="button-delete-cart"></div>
+                                </p:commandLink>
+                            </p:column>
+                            <f:facet name="footer">
+                                <h:outputText style="text-align:right;padding-left:330px;" value="Total : (VND)"></h:outputText>
+                                <div style="float: right;text-align:left;width:235px;">
+                                    <h:outputText style="color: red;" value="#{shoppingCartBean.totalPrice}">
+                                        <f:convertNumber type="number"></f:convertNumber>
+                                    </h:outputText>
+                                </div>
+                            </f:facet>
+                        </p:dataTable>
+
+                        <div style="text-align: center;margin-top: 15px;">
+                            <h:commandLink action="sProduct">
+                                <div class="button-small"><span>Tiếp tục mua</span></div>
+                            </h:commandLink>
+                            <h:commandLink action="#{shoppingCartBean.removeAllCart}">
+                                <div class="button-small"><span>Xóa giỏ hàng</span></div>
+                            </h:commandLink>
+                        </div>
+                    </h:form>
+                    <h:form id="orderForm" prependId="false">
+                        <p:panel header="Thông tin đặt hàng" toggleable="true">
+                            <ul id="frmRegister">
+                                <li>
+                                    <label>Họ và Tên</label>
+                                    <h:inputText styleClass="textbox" id="shipName" value="#{orderBean.shipName}"></h:inputText>
+                                </li>
+                                <li>
+                                    <label>Điện thoại di động </label>
+                                    <h:inputText styleClass="textbox" id="shipPhone" value="#{orderBean.shipPhone}"></h:inputText>
+                                </li>
+                                <li>
+                                    <label>Email</label>
+                                    <h:inputText styleClass="textbox" id="shipEmail" value="#{orderBean.shipEmail}"></h:inputText>
+                                </li>
+                                <li style="height: 60px;">
+                                    <label>Đại chỉ</label>
+                                    <h:inputTextarea style="height: 50px;" cols="5" styleClass="textbox" id="shipAddress" value="#{orderBean.shipAddress}"></h:inputTextarea>
+                                </li>
+                                <li style="height: 60px;">
+                                    <label>Yêu cầu</label>
+                                    <h:inputTextarea style="height: 50px;" styleClass="textbox" id="notes" value="#{orderBean.notes}"></h:inputTextarea>
+                                </li>
+                                <li>
+                                    <label>&nbsp;</label>
+                                    <p:commandButton ajax="false" action="#{orderBean.registerOrder}" value="Đặt hàng"></p:commandButton>
+                                </li>
+                            </ul>
+                        </p:panel>
+                    </h:form>
+                </div>
+            </div>
+            <script type="text/javascript">
+jQuery(document).ready(function() {
+      jQuery("#orderForm").validate({
+          rules: {
+              shipName: {
+                      required: true,
+                      minlength: 6,
+                      maxlength: 30
+              },
+              shipPhone: {
+                      required: true,
+                      minlength : 9,
+                      maxlength : 14,
+                      number: true
+              },
+              shipEmail: {
+                      required: true,
+                      minlength: 10,
+                      maxlength: 100,
+                      email: true
+              },
+              shipAddress: {
+                      required: true,
+                      maxlength: 250
+              },
+               notes: {
+                      maxlength: 500
+              }
+          },
+          errorClass : "validate_error",
+              errorElement: "span",
+              errorPlacement: function(error, element) {
+              error.appendTo(element.parent("li"));
+         },
+          success : function(errorElement){
+              errorElement.addClass("validate_success");
+           }
+       });
+ });
+            </script> 
+        </ui:define>
+    </ui:composition>
+</html>
+

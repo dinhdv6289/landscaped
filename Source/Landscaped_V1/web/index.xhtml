@@ -3,119 +3,44 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core">
-    <h:head>
-        <title>Landscaped</title>
-        <link href="../Library/style/style.css" type="text/css" rel="stylesheet"></link>
-    </h:head>
-    <h:body>
-        <div id="wrapper">
-            <div id="page">
-                <div id="sidebar">
-                    <!--  start #main-menu -->
-                    <div id="main-menu">
-                        <div class="wrap-main-menu">
-                            <a class="bg-main-menu" href="index.xhtml">
-                                <span>Trang chủ</span>
-                            </a>
-                            <a class="bg-main-menu" href="register.xhtml">
-                                <span>Đăng ký</span>
-                            </a>
-                            <a class="bg-main-menu" href="about.xhtml">
-                                <span>Giới thiệu</span>
-                            </a>
-                            <a class="bg-main-menu" href="products.xhtml">
-                                <span>Sản phẩm</span>
-                            </a>
-                            <a class="bg-main-menu" href="ads.xhtml">
-                                <span>Rao vặt</span>
-                            </a>
-                            <a class="bg-main-menu" href="contact.xhtml">
-                                <span>Liên hệ</span>
-                            </a>
-                            <a class="bg-main-menu" href="faqs.xhtml">
-                                <span>Hỏi đáp</span>
-                            </a>
-                        </div>
-                    </div>
-                    <!--  end #main-menu -->
-                    <!--  start #menu_left -->
-                    <div class="wrap-menuleft">
-                        <div class="menuleft-header">
-                            <span>Đăng nhập</span>
-                        </div>
-                        <div class="menuleft-bg">
-                            <h:form prependId="false">
-                                <ul id="frmLogin">
-                                    <li>
-                                        <label>UserName : </label>
-                                        <h:inputText value="#{accountBean.username}" ></h:inputText>
-                                    </li>
-                                    <li>
-                                        <label>Password : </label>
-                                        <h:inputSecret value="#{accountBean.password}"></h:inputSecret>
-                                    </li>
-                                    <li>
-                                        <h:commandButton styleClass="button" action="#{accountBean.authencation}" value="Login"></h:commandButton>
-                                    </li>
-                                    <li style="margin-top: 7px;">
-                                        <h:outputText value="#{accountBean.msg}" style="color:red;" />
-                                    </li>
-                                </ul>
-                            </h:form>
-                            <!--                            <a href="#"> - cây bonsai</a>-->
-                        </div>
-                        <div class="menuleft-bottom"></div>
-                    </div>
-                    <!--  end #menu_left -->
+    <ui:composition template="./template/userTemplate.xhtml">
+        <ui:define name="content">
+            <div class="wrap-content">
+                <div class="content-bg-title">
+                    <div class="content-title">Sản phẩm</div>
                 </div>
-                <div id="main-content">
-                    <div class="wrap-main-content">
-                        <div id="banner"></div>
-                        <div id="content-top">
-
-                            <!--  start #content -->
-                            <div class="wrap-content">
-                                <div class="content-bg-title">
-                                    <div class="content-title">Sản phẩm</div>
-                                </div>
-                                <div class="content-data">
-                                    <c:forEach items="${productBean.listProduct}" var="product">
-                                        <div class="frameproduct">
-                                            <div class="frameproduct-body">
-                                                <a href="#" class="p-name">${product[0].productName}</a>
-                                                <div class="p-image">
-                                                    <img alt="" height="150px"  width="170px" title="${product[0].productName}" src="${product[1].pathImage}"/>
-                                                </div>
-                                                <div class="p-price">
-                                                    <h:outputText value="${product[0].price}">
-                                                        <f:convertNumber type="number" ></f:convertNumber>
-                                                    </h:outputText> vnđ
-                                                </div>
-                                                <div class="p-button">
-                                                    <div class="button-small"><span>Chi tiết</span></div>
-                                                    <div class="button-small"><span>Mua</span></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </c:forEach>
-                                    <div class="frameproduct"></div>
-                                    <div class="frameproduct"></div>
-                                    <div class="frameproduct"></div>
-                                    <div class="frameproduct"></div>
+                <div class="content-data">
+                    <h:form>
+                        <c:forEach items="${productBean.listProduct}" var="product">
+                            <div class="frameproduct">
+                                <div class="frameproduct-body">
+                                    <a href="#" class="p-name">${product[0].productName}</a>
+                                    <div class="p-image">
+                                        <img alt="" height="150px"  width="170px" title="${product[0].productName}" src="${product[1].pathImage}"/>
+                                    </div>
+                                    <div class="p-price">
+                                        <h:outputText value="${product[0].price}">
+                                            <f:convertNumber type="number" ></f:convertNumber>
+                                        </h:outputText> vnđ
+                                    </div>
+                                    <div class="p-button">
+                                        <h:commandLink action="sDetails">
+                                            <f:setPropertyActionListener target="#{productBean.current}" value="${product[0]}"></f:setPropertyActionListener>
+                                            <div class="button-small"><span>Chi tiết</span></div>
+                                        </h:commandLink>
+                                        <h:commandLink action="#{productBean.viewBuy}">
+                                            <f:setPropertyActionListener target="#{productBean.current}" value="${product[0]}"></f:setPropertyActionListener>
+                                            <div class="button-small"><span>Mua</span></div>
+                                        </h:commandLink>
+                                    </div>
                                 </div>
                             </div>
-                            <!--  end #content -->
-                        </div>
-                    </div>
-                </div>
-                <div id="footer"></div>
-                <div id="coppyright">
-                    <div>Copyright 2010 Gardening Themes. All rights reserved.
-                        Design by <span style="color: red;">badboy</span>
-                    </div>
+                        </c:forEach>
+                    </h:form>
                 </div>
             </div>
-        </div>
-    </h:body>
+        </ui:define>
+    </ui:composition>
 </html>

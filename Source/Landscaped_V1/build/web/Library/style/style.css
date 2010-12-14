@@ -7,42 +7,90 @@ a{text-decoration: none;}
     margin:0 auto;
 }
 #page{
-    background:transparent url('../../Library/Images/container-bg.jpg') repeat-y;
+    background:transparent url('../../Library/Images/bg.jpg') repeat;
     float: left;
     width: 1000px;
 }
+#header{
+    background:transparent url('../../Library/Images/bg.jpg') repeat;
+    height: 50px;
+}
+#main{
+    width: 1000px;
+    overflow: hidden;
+}
+#col1{
+    float: left;
+    width: 205px;
+    overflow: hidden;
+}
+#col2{
+    float: left;
+    width: 795px;
+}
+#col2 .bg-main-menu{
+    height: 60px;
+    background:transparent url('../../Library/Images/main_top.jpg') no-repeat;
+}
+#col2 .wrap-main-menu {
+    padding: 17px;
+    overflow:hidden;
+}
+#col2 .bg-main-menu .bg-menu-left{
+    height: 45px;
+    background:transparent url('../../Library/Images/main_menu_left.gif') no-repeat;
+    width: 12px;
+    float: left;
+}
+#col2 .bg-main-menu .bg-menu{
+    height: 45px;
+    background:transparent url('../../Library/Images/main_menu_bg.gif') repeat-x;
+    float: left;
+    width:710px;
+}
+#col2 .bg-main-menu .bg-menu ul{
+    list-style: none;
+}
+#col2 .bg-main-menu .bg-menu ul li{
+    float: left;
+    line-height: 45px;
+    padding: 0 15px;
+    font-weight: bold;
+}
+#col2 .bg-main-menu .bg-menu ul li a{
+    color: #FFFFFF;
+
+}
+#col2 .bg-main-menu .bg-menu ul li a:hover{
+    text-decoration: underline;
+}
+
+#col2 .bg-main-menu .bg-menu-right{
+    height: 45px;
+    background:transparent url('../../Library/Images/main_menu_right.gif') no-repeat;
+    width: 13px;
+    float: left;
+}
+
+#col2 .bg-content{
+    background:transparent url('../../Library/Images/container-bg.jpg') repeat-y;
+    overflow: hidden;
+}
+#col2 .bg-main-bottom{
+    background:transparent url('../../Library/Images/bg_main_bottom.jpg') no-repeat;
+    overflow: hidden;
+    height: 115px;
+}
+
 /* #sidebar */
 #sidebar{
     overflow: hidden;
     width: 200px;
     float: left;
-    background:transparent url('../../Library/Images/bg_nav.gif') no-repeat;
-}
-#main-menu{
-    background:transparent url('../../Library/Images/bg_nav.gif') no-repeat;
-}
-.wrap-main-menu{
-    padding: 7px;
-    overflow: hidden;
-    margin-top:35px;
-}
-.bg-main-menu{
-    background:transparent url('../../Library/Images/bg_nav_left.gif') no-repeat;
-    height: 29px;
-    margin-bottom: 15px;
-    display: block;
-}
-.main-menu-text,.bg-main-menu span{
-    font-size: 14px;
-    color: #FFFFFF;
-    text-align: center;
-    line-height: 29px;
-    font-weight: bold;
-    display: block;
+    padding:5px;
 }
 #sidebar .wrap-menuleft{
-    position:absolute;
-    width:220px;
+    width:200px;
 }
 #sidebar .menuleft-header{
     background:transparent url('../../Library/Images/menuleft_header.gif') no-repeat;
@@ -87,7 +135,7 @@ a{text-decoration: none;}
 #sidebar ul#frmLogin li{
     float: left;
 }
-#sidebar ul#frmLogin li .button{
+#sidebar ul#frmLogin li .button ,#sidebar .menuleft-bg .button{
     margin-top:5px;
     padding:2px 10px;
     cursor: pointer;
@@ -106,7 +154,7 @@ a{text-decoration: none;}
     width: 800px;
 }
 #main-content{
-    width:800px;
+    width:795px;
     float: left;
 }
 #main-content .wrap-menu_left{
@@ -123,7 +171,7 @@ a{text-decoration: none;}
     float: left;
 }
 #main-content .wrap-content{
-    padding: 45px;
+    padding:30px 55px 0px 35px;
 }
 #main-content .content-bg-title{
     background:transparent url('../../Library/Images/post.jpg') no-repeat;
@@ -134,10 +182,11 @@ a{text-decoration: none;}
     height:28px;
     padding-left:32px;
     color: #034940;
+    line-height:18px;
     font-weight: bold;
 }
 .content-data{
-    padding: 10px 0 0 15px;
+    padding: 10px 15px 0;
     overflow: hidden;
 }
 .content-data .frameproduct{
@@ -209,6 +258,18 @@ a{text-decoration: none;}
     display:inline-block;
     white-space:nowrap;
 }
+.button-update-cart{
+    background:transparent url('../../Library/Images/update_cart.png') no-repeat;
+    height: 22px;
+    width: 22px;
+    float: left;
+}
+.button-delete-cart{
+    background:transparent url('../../Library/Images/remove_cart.png') no-repeat;
+    height: 22px;
+    width: 22px;
+    float: left;
+}
 
 /*  #footer */
 #footer{
@@ -225,9 +286,10 @@ a{text-decoration: none;}
 }
 #coppyright div{
     float: right;
-    width: 400px;
+    width: 300px;
     font-weight: bold;
     color: #016a42;
     padding-right: 30px;
     text-align: center;
+    font-size:12px;
 }

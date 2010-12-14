@@ -18,5 +18,8 @@
     <mapping resource="Landscaped/Domain/Product.hbm.xml"/>
     <mapping resource="Landscaped/Domain/PictureProducts.hbm.xml"/>
     <mapping resource="Landscaped/Domain/Roles.hbm.xml"/>
+    <mapping resource="Landscaped/Domain/Orders.hbm.xml"/>
+    <mapping resource="Landscaped/Domain/OrderDetails.hbm.xml"/>
+    <mapping resource="Landscaped/Domain/FeedBack.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

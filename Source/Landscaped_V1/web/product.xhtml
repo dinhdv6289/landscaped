@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <ui:composition template="./template/userTemplate.xhtml">
+        <ui:define name="content">
+            <div class="wrap-content">
+                <div class="content-bg-title">
+                    <div class="content-title">Sản phẩm</div>
+                </div>
+                <div class="content-data">
+                    <h:form>
+                        <c:forEach items="${productBean.listProductByCategory}" var="product">
+                            <div class="frameproduct">
+                                <div class="frameproduct-body">
+                                    <a href="#" class="p-name">${product[0].productName}</a>
+                                    <div class="p-image">
+                                        <img alt="" height="150px"  width="170px" title="${product[0].productName}" src="${product[1].pathImage}"/>
+                                    </div>
+                                    <div class="p-price">
+                                        <h:outputText value="${product[0].price}">
+                                            <f:convertNumber type="number" ></f:convertNumber>
+                                        </h:outputText> vnđ
+                                    </div>
+                                    <div class="p-button">
+                                        <h:commandLink action="#{productBean.viewDetail}">
+                                            <f:setPropertyActionListener target="#{productBean.current}" value="${product[0]}"></f:setPropertyActionListener>
+                                            <div class="button-small"><span>Chi tiết</span></div>
+                                        </h:commandLink>
+                                        <h:commandLink action="#{productBean.viewBuy}">
+                                            <f:setPropertyActionListener target="#{productBean.current}" value="${product[0]}"></f:setPropertyActionListener>
+                                            <div class="button-small"><span>Mua</span></div>
+                                        </h:commandLink>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </h:form>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>
+

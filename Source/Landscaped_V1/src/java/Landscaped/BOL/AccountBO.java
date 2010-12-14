@@ -34,4 +34,17 @@ public class AccountBO extends BaseUtil<Account> {
             return false;
         }
     }
+
+    public Account getAccountByUserName(String username) {
+        try {
+
+            String query = "[username]='" + username + "'";
+            List<Account> list = getBySQLQuery(query, null, 0);
+            return list.get(0);
+
+        } catch (Exception ex) {
+            ex.getMessage();
+            return null;
+        }
+    }
 }
