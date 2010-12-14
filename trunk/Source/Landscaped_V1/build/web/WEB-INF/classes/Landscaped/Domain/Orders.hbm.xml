@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="Landscaped" name="Landscaped.Domain.Orders" table="Orders">
+        <id name="orderId" type="int">
+            <column name="OrderId"/>
+            <generator class="identity" />
+        </id>
+        <property name="shipName" type="string">
+            <column length="50" name="ShipName"/>
+        </property>
+        <property name="shipAddress" type="string">
+            <column length="250" name="ShipAddress"/>
+        </property>
+        <property name="shipPhone" type="string">
+            <column length="15" name="ShipPhone"/>
+        </property>
+        <property name="shipEmail" type="string">
+            <column length="50" name="ShipEmail"/>
+        </property>
+        <property name="dateCreation" type="timestamp">
+            <column name="DateCreation"/>
+        </property>
+        <property name="deliveryDate" type="timestamp">
+            <column name="DeliveryDate"/>
+        </property>
+        <property name="state" type="boolean">
+            <column name="State"/>
+        </property>
+        <property name="notes" type="string">
+            <column length="500" name="Notes"/>
+        </property>
+        <set inverse="true" name="orderDetails">
+            <key>
+                <column name="OrderId"/>
+            </key>
+            <one-to-many class="Landscaped.Domain.OrderDetails"/>
+        </set>
+    </class>
+</hibernate-mapping>
+

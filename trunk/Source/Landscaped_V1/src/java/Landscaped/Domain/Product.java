@@ -14,18 +14,24 @@ import java.util.Set;
  */
 public class Product implements java.io.Serializable {
 
-    private int productId;
-    private Categories category;
-    private Account account;
-    private String productName;
-    private float price;
-    private String description;
-    private Date dateCreation;
-    private Date dateModify;
-    private boolean state;
-    private Set pictureProducts = new HashSet(0);
+    public int productId;
+    public Categories category;
+    public Account account;
+    public String productName;
+    public float price;
+    public String description;
+    public Date dateCreation;
+    public Date dateModify;
+    public boolean state;
+    public Set pictureProducts = new HashSet(0);
 
     public Product() {
+    }
+
+    public Product(int productId, String productName, float price) {
+        this.productId = productId;
+        this.productName = productName;
+        this.price = price;
     }
 
     public Product(int productId, Categories category, Account account, String productName, float price, String description, Date dateCreation, Date dateModify, boolean state, Set pictureProducts) {

@@ -1,0 +1,36 @@
+.ui-widget {
+    font-size:12px !important;
+}
+
+ul#frmRegister{
+    list-style: none;
+    overflow: hidden;
+    margin-left: 25px;
+    width: 630px;
+    padding-top: 10px;
+}
+ul#frmRegister li{
+    float: left;
+    height: 35px;
+    width: 100%;
+}
+ul#frmRegister li label{
+    float:left;
+    height:30px;
+    width:130px;
+}
+ul#frmRegister li .textbox{
+    height: 18px;
+    border: 1px solid #3DB70E;
+    padding-top: 2px;
+    width: 200px;
+}
+span.validate_error{
+    color: red;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: bold;
+}
+span.validate_success{
+    color: white;
+}
